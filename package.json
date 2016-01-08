@@ -1,0 +1,26 @@
+{
+  "name": "product-monitor.plugin.local-auth",
+  "version": "1.0.0",
+  "description": "Adds name and password authentication to product monitor, and enables the secure pages feature",
+  "main": "local-auth/plugin.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connected-web/product-monitor.plugin.local-auth.git"
+  },
+  "keywords": [
+    "product-monitor",
+    "nodejs",
+    "plugin",
+    "passport",
+    "local-auth"
+  ],
+  "author": "John Beech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/connected-web/product-monitor.plugin.local-auth/issues"
+  },
+  "homepage": "https://github.com/connected-web/product-monitor.plugin.local-auth#readme"
+}
