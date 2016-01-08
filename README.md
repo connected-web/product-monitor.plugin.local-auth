@@ -47,5 +47,8 @@ Returns the config applied to the plugin.
 Changes the config applied to the plugin.
 
 ## Change Log
-### Pending changes
+### 1.0.1
+- Made login form look neater
+
+### 1.0.0
 - Initial release
