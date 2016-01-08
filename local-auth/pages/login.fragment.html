@@ -1,18 +1,39 @@
 <jumbotron>
-    <h2>Login</h2>
-    <form action="/auth/login" method="post">
-        <div>
-            <label>Username:</label>
-            <input type="text" name="username" />
-        </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="password" />
-        </div>
-        <div>
-            <input type="submit" value="Log In" />
-        </div>
-    </form>
-</jumbotron>
+    <form action="/auth/login" method="post" class="form-horizontal">
+        <fieldset>
 
-<p>If not, visit the <a href="/auth/logout/">logout</a> link again.</p>
+            <!-- Form Name -->
+            <h2>Authenticate</h2>
+
+            <p>Certain pages require authentication to access.</p>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="username"></label>
+                <div class="col-md-4">
+                    <input id="username" name="username" type="text" placeholder="username, or email" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password"></label>
+                <div class="col-md-4">
+                    <input id="password" name="password" type="password" placeholder="password" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="submit_login"></label>
+                <div class="col-md-4">
+                    <button id="submit_login" name="submit_login" class="btn btn-primary">Log in</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+</jumbotron>
