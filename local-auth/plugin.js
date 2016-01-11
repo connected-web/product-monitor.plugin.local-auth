@@ -31,15 +31,18 @@ function create() {
                 User.findOne(username)
                     .then(function(user) {
                         if (!user) {
+                            console.log('X', user);
                             return done(null, false, {
                                 message: 'Incorrect username.'
                             });
                         }
                         if (user.password !== password) {
+                            console.log('Y', user);
                             return done(null, false, {
                                 message: 'Incorrect password.'
                             });
                         }
+                        console.log('Z', user);
                         return done(null, user);
                     })
                     .catch(done);
@@ -57,7 +60,7 @@ function create() {
         server.post('/auth/local/login',
             passport.authenticate('local', {
                 successRedirect: '/',
-                failureRedirect: '/docs/login'
+                failureRedirect: '/docs/local-login'
             })
         );
 
