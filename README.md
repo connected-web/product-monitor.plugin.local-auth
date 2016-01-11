@@ -47,6 +47,9 @@ Returns the config applied to the plugin.
 Changes the config applied to the plugin.
 
 ## Change Log
+### 1.0.4
+- Fixed console log messages
+
 ### 1.0.3
 - Fixed POST url in login form
 
