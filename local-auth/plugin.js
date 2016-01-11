@@ -1,6 +1,3 @@
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var expressSession = require('express-session');
 var passport = require('passport');
 var passportLocal = require('passport-local');
 
@@ -11,7 +8,8 @@ function create() {
 
     var User = {
         findOne: function(username) {
-            return Promise.accept(pluginConfig.users[username] || false);
+            var user = pluginConfig.users[username] || false;
+            return Promise.accept(user);
         }
     };
 
@@ -46,58 +44,33 @@ function create() {
                     })
                     .catch(done);
             }));
-
-        passport.serializeUser(function(user, done) {
-            done(null, user);
-        });
-
-        passport.deserializeUser(function(user, done) {
-            done(null, user);
-        });
     }
 
     function registerContentRoutes(app) {
-        app.addContentPage(__dirname + '/pages/login.fragment.html');
+        app.addContentPage(__dirname + '/pages/local-login.fragment.html');
         app.addContentPage(__dirname + '/pages/logout.fragment.html');
     }
 
-    function registerAuthRoutes(server) {
-        server.use(cookieParser());
-        server.use(bodyParser.urlencoded({
-            extended: true
-        }));
-        server.use(bodyParser.json());
-        server.use(expressSession({
-            secret: 'keyboard cat',
-            resave: false,
-            saveUninitialized: false
-        }));
-        server.use(passport.initialize());
-        server.use(passport.session());
+    function registerAuthRoutes(app) {
+        var server = app.server;
 
-        server.post('/auth/login',
+        server.post('/auth/local/login',
             passport.authenticate('local', {
                 successRedirect: '/',
                 failureRedirect: '/docs/login'
             })
         );
 
-        server.get('/auth/user', function(req, res) {
-            res.jsonp({
-                user: req.user
-            });
-        });
-
-        server.get('/auth/logout', function(req, res) {
-            req.logout();
-            res.redirect('/docs/logout');
+        app.enableAuthentication({
+            name: 'local',
+            url: '/docs/local-login'
         });
     }
 
     function apply(app) {
         registerStrategy();
         registerContentRoutes(app);
-        registerAuthRoutes(app.server);
+        registerAuthRoutes(app);
     }
 
     return {
