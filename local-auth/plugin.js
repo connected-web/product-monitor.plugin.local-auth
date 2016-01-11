@@ -31,13 +31,13 @@ function create() {
                 User.findOne(username)
                     .then(function(user) {
                         if (!user) {
-                            console.log('X', user);
+                            console.log('Invalid username', username);
                             return done(null, false, {
                                 message: 'Incorrect username.'
                             });
                         }
                         if (user.password !== password) {
-                            console.log('Y', user);
+                            console.log('Invalid password provided for', username);
                             return done(null, false, {
                                 message: 'Incorrect password.'
                             });
