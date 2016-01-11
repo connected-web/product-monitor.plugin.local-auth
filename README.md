@@ -47,6 +47,10 @@ Returns the config applied to the plugin.
 Changes the config applied to the plugin.
 
 ## Change Log
+### 1.0.2
+- Collapsed common methods into `product-monitor`
+- Added call to `application.enableAuthentication(mode)`
+
 ### 1.0.1
 - Made login form look neater
 
