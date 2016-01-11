@@ -47,6 +47,9 @@ Returns the config applied to the plugin.
 Changes the config applied to the plugin.
 
 ## Change Log
+### 1.0.3
+- Fixed POST url in login form
+
 ### 1.0.2
 - Collapsed common methods into `product-monitor`
 - Added call to `application.enableAuthentication(mode)`
