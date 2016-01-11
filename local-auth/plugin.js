@@ -42,7 +42,7 @@ function create() {
                                 message: 'Incorrect password.'
                             });
                         }
-                        console.log('Z', user);
+                        console.log('Validated user', username);
                         return done(null, user);
                     })
                     .catch(done);
