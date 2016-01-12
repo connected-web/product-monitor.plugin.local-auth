@@ -21,7 +21,7 @@ Applies the plugin to a product-monitor app.
 - Registers `POST` `/auth/login`
 - Registers `GET` `/auth/logout`
 - Registers `GET` `/docs/login`
-- Enables the _secure pages_ feature of `product-monitor` by calling `app.enableAuthentication();`
+- Enables the _secure pages_ feature of `product-monitor`
 
 ### plugin.info()
 Returns the `name`, `description`, and `keywords` for the plugin:
