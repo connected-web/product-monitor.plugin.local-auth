@@ -19,10 +19,8 @@ describe('Plugin API', function() {
     it('should apply methods to the supplied application', function(done) {
         var expectedTasks = {
             "addContentPage": false,
-            "serverGet:/auth/user": false,
-            "serverGet:/auth/logout": false,
-            "serverPost:/auth/login": false,
-            "use": false
+            "serverPost:/auth/local/login": false,
+            "enableAuthentication:local:/docs/local-login": false
         };
 
         function complete(task) {
@@ -43,9 +41,9 @@ describe('Plugin API', function() {
             addContentPage: () => complete('addContentPage'),
             server: {
                 get: (path, req, res) => complete('serverGet:' + path),
-                post: (path, req, res) => complete('serverPost:' + path),
-                use: () => complete('use')
-            }
+                post: (path, req, res) => complete('serverPost:' + path)
+            },
+            enableAuthentication: (options) => complete('enableAuthentication:' + options.name + ':' + options.url)
         };
         instance.apply(app);
     });
