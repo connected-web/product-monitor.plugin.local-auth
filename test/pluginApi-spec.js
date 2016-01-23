@@ -50,14 +50,12 @@ describe('Plugin API', function() {
 
     it('should provide a default config', function() {
         var actual = instance.getConfig();
-        expect(actual).to.have.property('users');
+        expect(actual).to.deep.equal({});
     });
 
     it('should allow the default config to be changed', function() {
         var expected = {
-            users: {
-                'admin': 'keyboard cats'
-            }
+            validation: true
         };
         expect(instance.getConfig()).to.not.deep.equal(expected);
 

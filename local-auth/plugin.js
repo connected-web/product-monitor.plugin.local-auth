@@ -1,7 +1,9 @@
+var crypto = require('crypto');
 var passport = require('passport');
 var passportLocal = require('passport-local');
+var bodyParser = require('body-parser');
 
-var defaultConfig = require('./defaultConfig.json');
+var defaultConfig = {};
 
 function create() {
     var pluginConfig = defaultConfig;
@@ -25,24 +27,31 @@ function create() {
         return require('../package.json');
     }
 
-    function registerStrategy() {
+    var sha1sum = function(input) {
+        return crypto.createHash('sha1').update(JSON.stringify(input)).digest('hex')
+    }
+
+    function registerStrategy(app) {
+        var users = app.users;
         passport.use(new passportLocal.Strategy(
             function(username, password, done) {
-                User.findOne(username)
-                    .then(function(user) {
+                const matcher = (user) => (user.username + '').toLowerCase() === (username + '').toLowerCase();
+                users.findUsersBy(matcher)
+                    .then(function(users) {
+                        const user = users[0] || false;
                         if (!user) {
-                            console.log('Invalid username', username);
+                            console.log('[Local Auth] Invalid username', username);
                             return done(null, false, {
                                 message: 'Incorrect username.'
                             });
                         }
-                        if (user.password !== password) {
-                            console.log('Invalid password provided for', username);
+                        if (user.passwordHash !== sha1sum(password)) {
+                            console.log('[Local Auth] Invalid password provided for', username);
                             return done(null, false, {
                                 message: 'Incorrect password.'
                             });
                         }
-                        console.log('Validated user', username);
+                        console.log('[Local Auth] Authenticated user', username);
                         return done(null, user);
                     })
                     .catch(done);
@@ -64,6 +73,13 @@ function create() {
             })
         );
 
+        server.post('/auth/local/sha1sum', function(req, res) {
+            var value = req.body.value;
+            res.jsonp({
+                sha1sum: sha1sum(value)
+            });
+        });
+
         app.enableAuthentication({
             name: 'local',
             url: '/docs/local-login'
@@ -71,7 +87,7 @@ function create() {
     }
 
     function apply(app) {
-        registerStrategy();
+        registerStrategy(app);
         registerContentRoutes(app);
         registerAuthRoutes(app);
     }
