@@ -47,6 +47,9 @@ Returns the config applied to the plugin.
 Changes the config applied to the plugin.
 
 ## Change Log
+### 1.1.0
+- Implemented against product-monitor users API
+
 ### 1.0.4
 - Fixed console log messages
 
