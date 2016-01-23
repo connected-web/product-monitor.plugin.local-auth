@@ -20,6 +20,7 @@ describe('Plugin API', function() {
         var expectedTasks = {
             "addContentPage": false,
             "serverPost:/auth/local/login": false,
+            "serverPost:/auth/local/sha1sum": false,
             "enableAuthentication:local:/docs/local-login": false
         };
 
