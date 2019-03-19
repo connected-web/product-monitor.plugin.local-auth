@@ -11,7 +11,7 @@ function create() {
     var User = {
         findOne: function(username) {
             var user = pluginConfig.users[username] || false;
-            return Promise.accept(user);
+            return Promise.resolve(user);
         }
     };
 
