@@ -47,6 +47,11 @@ Returns the config applied to the plugin.
 Changes the config applied to the plugin.
 
 ## Change Log
+
+### 1.2.1
+- Remove `body-parser` dependency (unused)
+- Make `standard` a dev dependency
+
 ### 1.2.0
 - Implement `standard` js linting and remove dead code
 
