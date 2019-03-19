@@ -1,6 +1,6 @@
 {
   "name": "product-monitor.plugin.local-auth",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Adds name and password authentication to product monitor, and enables the secure pages feature",
   "main": "local-auth/plugin.js",
   "scripts": {
