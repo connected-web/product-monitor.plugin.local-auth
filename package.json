@@ -4,7 +4,7 @@
   "description": "Adds name and password authentication to product monitor, and enables the secure pages feature",
   "main": "local-auth/plugin.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
