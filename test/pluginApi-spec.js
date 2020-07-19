@@ -25,7 +25,7 @@ describe('Plugin API', function () {
     }
 
     function complete (task) {
-      if (expectedTasks.hasOwnProperty(task)) {
+      if (Object.prototype.hasOwnProperty.call(expectedTasks, task)) {
         expectedTasks[task] = true
         var completed = Object.keys(expectedTasks)
           .map((task) => expectedTasks[task])
