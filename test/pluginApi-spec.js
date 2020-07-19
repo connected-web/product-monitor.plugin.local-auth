@@ -18,14 +18,14 @@ describe('Plugin API', function () {
 
   it('should apply methods to the supplied application', function (done) {
     var expectedTasks = {
-      'addContentPage': false,
+      addContentPage: false,
       'serverPost:/auth/local/login': false,
       'serverPost:/auth/local/sha1sum': false,
       'enableAuthentication:local:/docs/local-login': false
     }
 
     function complete (task) {
-      if (expectedTasks.hasOwnProperty(task)) {
+      if (Object.prototype.hasOwnProperty.call(expectedTasks, task)) {
         expectedTasks[task] = true
         var completed = Object.keys(expectedTasks)
           .map((task) => expectedTasks[task])
